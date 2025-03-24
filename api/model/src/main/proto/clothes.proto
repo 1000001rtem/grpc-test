@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option java_package = "com.eremin.grpctest";
+
+service ClothesRoutes {
+  rpc save (CreateClothesRequest) returns (ClothesDto) {}
+  rpc findById(FindByIdClothesRequest) returns (ClothesDto) {}
+  rpc searchClothes(SearchClothesRequest) returns (SearchClothesResponse) {}
+}
+
+message ClothesDto {
+  string id = 1;
+  string name = 2;
+  string color = 3;
+  string brand = 4;
+  string season = 5;
+  string gender = 6;
+  string category = 7;
+}
+
+message CreateClothesRequest {
+  string name = 1;
+  string color = 2;
+  string brand = 3;
+  string season = 4;
+  string gender = 5;
+  string category = 6;
+}
+
+message FindByIdClothesRequest {
+  string id = 1;
+}
+
+message SearchClothesRequest {
+  optional string color = 1;
+  optional string brand = 2;
+  optional string season = 3;
+  optional string gender = 4;
+  optional string category = 5;
+}
+
+message SearchClothesResponse {
+  repeated ClothesDto content = 1;
+  int32 page = 2;
+  int64 total = 3;
+}

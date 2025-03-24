@@ -1,0 +1,26 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 1000
+        order_inserts: true
+        order_updates: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/testDb?currentSchema=test
+    username: test
+    password: test
+    hikari:
+      schema: test
+      connection-init-sql: CREATE SCHEMA IF NOT EXISTS "test";
+  liquibase:
+    default-schema: test
+
+  grpc:
+    server:
+      port: 9090
+
+
